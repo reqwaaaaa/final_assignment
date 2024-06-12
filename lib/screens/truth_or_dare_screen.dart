@@ -194,7 +194,7 @@ class TruthOrDareScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 20),
                         Image.asset(
-                          'lib/assets/heartbeat.png',
+                          'images/heartbeat.png',
                           height: 150,
                         ),
                       ],
@@ -238,7 +238,7 @@ class TruthOrDareScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 20),
                         Image.asset(
-                          'lib/assets/devil.png',
+                          'images/devil.png',
                           height: 150,
                         ),
                       ],

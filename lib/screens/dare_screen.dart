@@ -113,7 +113,7 @@ class DarePage extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   Text(
-                    '你最喜欢什么样的天气？',
+                    '跑到街上大叫',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -134,7 +134,7 @@ class DarePage extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
-                      foregroundColor: Colors.pink,
+                      foregroundColor: const Color.fromARGB(255, 30, 162, 233),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
