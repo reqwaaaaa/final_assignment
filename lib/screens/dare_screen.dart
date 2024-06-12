@@ -58,7 +58,7 @@ class DarePage extends StatefulWidget {
 }
 
 class _DarePageState extends State<DarePage> {
-  String question = '你最喜欢什么样的天气？';
+  String question = '做100个深蹲。';
   int questionIndex = 0;
   List<String> questions = [];
   bool showColorize = false;

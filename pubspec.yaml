@@ -31,6 +31,7 @@ flutter:
     - images/heartbeat.png
     - images/heartbeat2.png
     - assets/truth.txt
+    - assets/dare.txt
   uses-material-design: true
 
 
