@@ -5,6 +5,9 @@ import '../components/custom_button.dart';
 import '../state/truth_or_dare_state.dart';
 import 'dart:io';
 import 'dart:math';
+import 'dart:async';
+import 'package:flutter/services.dart' show rootBundle; // 用于读取 assets 中的文件
+import 'package:animated_text_kit/animated_text_kit.dart'; // 导入 animated_text_kit
 
 class TruthScreen extends StatelessWidget {
   final TextEditingController _truthController = TextEditingController();
@@ -49,6 +52,7 @@ class TruthScreen extends StatelessWidget {
   }
 }
 
+
 class TruthPage extends StatefulWidget {
   @override
   _TruthPageState createState() => _TruthPageState();
@@ -58,6 +62,7 @@ class _TruthPageState extends State<TruthPage> {
   String question = '你最喜欢什么样的天气？';
   int questionIndex = 0;
   List<String> questions = [];
+  bool showColorize = false;
 
   @override
   void initState() {
@@ -67,8 +72,7 @@ class _TruthPageState extends State<TruthPage> {
 
   Future<void> _loadQuestions() async {
     try {
-      final file = File('assets/truth.txt'); // 放到assets目录下
-      final contents = await file.readAsString();
+      final contents = await rootBundle.loadString('assets/truth.txt');
       setState(() {
         questions =
             contents.split('\n').where((line) => line.isNotEmpty).toList();
@@ -88,8 +92,15 @@ class _TruthPageState extends State<TruthPage> {
       setState(() {
         question = questions[random.nextInt(questions.length)];
         questionIndex += 1;
+        showColorize = false;
       });
     }
+  }
+
+  void _showColorizeAnimation() {
+    setState(() {
+      showColorize = true;
+    });
   }
 
   @override
@@ -136,7 +147,7 @@ class _TruthPageState extends State<TruthPage> {
             },
             child: Container(
               width: MediaQuery.of(context).size.width * 0.9,
-              height: MediaQuery.of(context).size.width * 0.9,
+              height: MediaQuery.of(context).size.height * 0.8,
               key: ValueKey<int>(questionIndex), // 使用问题索引作为key
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 255, 170, 207),
@@ -166,21 +177,57 @@ class _TruthPageState extends State<TruthPage> {
                     height: 150,
                   ),
                   SizedBox(height: 20),
-                  Text(
-                    question,
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      shadows: [
-                        Shadow(
-                          offset: Offset(2, 2),
-                          blurRadius: 4,
-                          color: Colors.black.withOpacity(0.5),
-                        ),
-                      ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: AnimatedSwitcher(
+                      duration: Duration(milliseconds: 100),
+                      child: showColorize
+                          ? AnimatedTextKit(
+                              animatedTexts: [
+                                ColorizeAnimatedText(
+                                  question,
+                                  textStyle: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  colors: [
+                                    Colors.pink,
+                                    Colors.purple,
+                                    Colors.blue,
+                                    Colors.yellow,
+                                    Colors.red,
+                                  ],
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                              isRepeatingAnimation: false,
+                              key: ValueKey('colorize'),
+                            )
+                          : AnimatedTextKit(
+                              animatedTexts: [
+                                TypewriterAnimatedText(
+                                  question,
+                                  textStyle: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    shadows: [
+                                      Shadow(
+                                        offset: Offset(2, 2),
+                                        blurRadius: 4,
+                                        color: Colors.black.withOpacity(0.5),
+                                      ),
+                                    ],
+                                  ),
+                                  textAlign: TextAlign.center,
+                                  speed: Duration(milliseconds: 50),
+                                ),
+                              ],
+                              isRepeatingAnimation: false,
+                              onFinished: _showColorizeAnimation,
+                              key: ValueKey('typewriter'),
+                            ),
                     ),
-                    textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 40),
                   ElevatedButton(
