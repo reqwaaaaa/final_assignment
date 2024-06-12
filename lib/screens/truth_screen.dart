@@ -63,11 +63,18 @@ class _TruthPageState extends State<TruthPage> {
   int questionIndex = 0;
   List<String> questions = [];
   bool showColorize = false;
+  List<Color> gradientColors = [
+    Color.fromARGB(255, 255, 123, 207),
+    Color.fromARGB(255, 255, 255, 255),
+    Color.fromARGB(255, 241, 174, 255),
+  ];
+  int colorIndex = 0;
 
   @override
   void initState() {
     super.initState();
     _loadQuestions();
+    _startColorAnimation();
   }
 
   Future<void> _loadQuestions() async {
@@ -100,6 +107,14 @@ class _TruthPageState extends State<TruthPage> {
   void _showColorizeAnimation() {
     setState(() {
       showColorize = true;
+    });
+  }
+
+  void _startColorAnimation() {
+    Timer.periodic(Duration(seconds: 5), (timer) {
+      setState(() {
+        colorIndex = (colorIndex + 1) % gradientColors.length;
+      });
     });
   }
 
@@ -145,12 +160,20 @@ class _TruthPageState extends State<TruthPage> {
                 child: child,
               );
             },
-            child: Container(
+            child: AnimatedContainer(
+              duration: Duration(seconds: 5),
               width: MediaQuery.of(context).size.width * 0.9,
               height: MediaQuery.of(context).size.height * 0.8,
               key: ValueKey<int>(questionIndex), // 使用问题索引作为key
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 255, 170, 207),
+                gradient: LinearGradient(
+                  colors: [
+                    gradientColors[colorIndex],
+                    gradientColors[(colorIndex + 1) % gradientColors.length],
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Column(
@@ -178,9 +201,9 @@ class _TruthPageState extends State<TruthPage> {
                   ),
                   SizedBox(height: 20),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: AnimatedSwitcher(
-                      duration: Duration(milliseconds: 100),
+                      duration: Duration(milliseconds: 500),
                       child: showColorize
                           ? AnimatedTextKit(
                               animatedTexts: [
@@ -193,9 +216,9 @@ class _TruthPageState extends State<TruthPage> {
                                   colors: [
                                     Colors.pink,
                                     Colors.purple,
-                                    Colors.blue,
-                                    Colors.yellow,
-                                    Colors.red,
+                                    Color.fromARGB(255, 33, 75, 243),
+                                    const Color.fromARGB(255, 59, 255, 209),
+                                    const Color.fromARGB(255, 216, 244, 54),
                                   ],
                                   textAlign: TextAlign.center,
                                 ),
@@ -220,7 +243,7 @@ class _TruthPageState extends State<TruthPage> {
                                     ],
                                   ),
                                   textAlign: TextAlign.center,
-                                  speed: Duration(milliseconds: 50),
+                                  speed: Duration(milliseconds: 100),
                                 ),
                               ],
                               isRepeatingAnimation: false,
