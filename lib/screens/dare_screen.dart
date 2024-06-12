@@ -195,7 +195,7 @@ class _DarePageState extends State<DarePage> {
                   ),
                   SizedBox(height: 20),
                   Image.asset(
-                    'images/heartbeat2.png',
+                    'images/devil2.png',
                     height: 150,
                   ),
                   SizedBox(height: 20),
