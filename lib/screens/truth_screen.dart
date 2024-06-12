@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import '../components/custom_text_field.dart';
 import '../components/custom_button.dart';
 import '../state/truth_or_dare_state.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class TruthScreen extends StatelessWidget {
   final TextEditingController _truthController = TextEditingController();
@@ -47,7 +49,45 @@ class TruthScreen extends StatelessWidget {
   }
 }
 
-class TruthPage extends StatelessWidget {
+class TruthPage extends StatefulWidget {
+  @override
+  _TruthPageState createState() => _TruthPageState();
+}
+
+class _TruthPageState extends State<TruthPage> {
+  String question = '你最喜欢什么样的天气？';
+
+  Future<void> fetchQuestion() async {
+    final url = 'https://truth-dare.p.rapidapi.com/truthDareApi/truth';
+    final headers = {
+      'x-rapidapi-key': '0255fcf540mshb4b417debf46d03p1e0028jsn97a3a9f43aa6',
+      'x-rapidapi-host': 'truth-dare.p.rapidapi.com',
+    };
+
+    try {
+      final response = await http.get(Uri.parse(url), headers: headers);
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        print('Response Data: $data');  // 打印响应数据进行调试
+        setState(() {
+          question = data['question'] ?? '未能获取问题';
+        });
+      } else {
+        print('Failed to load question: ${response.statusCode}');
+        print('Response body: ${response.body}');
+        setState(() {
+          question = '加载问题失败';
+        });
+      }
+    } catch (e) {
+      print('Error: $e');
+      setState(() {
+        question = '加载问题时发生错误';
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,8 +120,8 @@ class TruthPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: FractionallySizedBox(
-            widthFactor: 0.9,  // 控制卡片宽度占屏幕宽度的百分比
-            heightFactor: 0.9, // 控制卡片高度占屏幕高度的百分比
+            widthFactor: 0.9,
+            heightFactor: 0.9,
             child: Container(
               padding: EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -113,7 +153,7 @@ class TruthPage extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   Text(
-                    '你最喜欢什么样的天气？',
+                    question,
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -126,11 +166,12 @@ class TruthPage extends StatelessWidget {
                         ),
                       ],
                     ),
+                    textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 40),
                   ElevatedButton(
                     onPressed: () {
-                      // Handle next question
+                      fetchQuestion();
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,

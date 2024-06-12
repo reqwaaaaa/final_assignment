@@ -7,6 +7,7 @@ import '../state/truth_or_dare_state.dart';
 import 'dart:math';
 import 'package:dod1/screens/dare_screen.dart';
 
+
 // class TruthOrDareScreen extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {
