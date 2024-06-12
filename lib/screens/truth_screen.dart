@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import '../components/custom_text_field.dart';
 import '../components/custom_button.dart';
 import '../state/truth_or_dare_state.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'dart:io';
+import 'dart:math';
 
 class TruthScreen extends StatelessWidget {
   final TextEditingController _truthController = TextEditingController();
@@ -57,36 +57,36 @@ class TruthPage extends StatefulWidget {
 class _TruthPageState extends State<TruthPage> {
   String question = '你最喜欢什么样的天气？';
   int questionIndex = 0;
+  List<String> questions = [];
 
-  Future<void> fetchQuestion() async {
-    final url = 'https://truth-dare.p.rapidapi.com/truthDareApi/truth';
-    final headers = {
-      'x-rapidapi-key': 'YOUR_API_KEY_HERE', // 替换为您的API密钥
-      'x-rapidapi-host': 'truth-dare.p.rapidapi.com',
-    };
+  @override
+  void initState() {
+    super.initState();
+    _loadQuestions();
+  }
 
+  Future<void> _loadQuestions() async {
     try {
-      final response = await http.get(Uri.parse(url), headers: headers);
-
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        print('Response Data: $data');  // 打印响应数据进行调试
-        setState(() {
-          question = data['question'] ?? '未能获取问题';
-          questionIndex += 1;
-        });
-      } else {
-        print('Failed to load question: ${response.statusCode}');
-        print('Response body: ${response.body}');
-        setState(() {
-          question = '加载问题失败';
-          questionIndex += 1;
-        });
-      }
+      final file = File('assets/truth.txt'); // 放到assets目录下
+      final contents = await file.readAsString();
+      setState(() {
+        questions =
+            contents.split('\n').where((line) => line.isNotEmpty).toList();
+        _getRandomQuestion();
+      });
     } catch (e) {
-      print('Error: $e');
+      print('Error reading questions file: $e');
       setState(() {
         question = '加载问题时发生错误';
+      });
+    }
+  }
+
+  void _getRandomQuestion() {
+    if (questions.isNotEmpty) {
+      final random = Random();
+      setState(() {
+        question = questions[random.nextInt(questions.length)];
         questionIndex += 1;
       });
     }
@@ -123,21 +123,21 @@ class _TruthPageState extends State<TruthPage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
-            child: AnimatedSwitcher(
-                duration: Duration(milliseconds: 200),
-                transitionBuilder: (Widget child, Animation<double> animation) {
-                return SlideTransition(
-                  position: Tween<Offset>(
-                    begin: Offset(0, 1), // 从下方进入
-                    end: Offset(0, 0),   // 位置归零
-                  ).animate(animation),
-                  child: child,
-                );
-              },
+          child: AnimatedSwitcher(
+            duration: Duration(milliseconds: 200),
+            transitionBuilder: (Widget child, Animation<double> animation) {
+              return SlideTransition(
+                position: Tween<Offset>(
+                  begin: Offset(0, 1), // 从下方进入
+                  end: Offset(0, 0), // 位置归零
+                ).animate(animation),
+                child: child,
+              );
+            },
             child: Container(
-              width:MediaQuery.of(context).size.width * 0.9 ,
+              width: MediaQuery.of(context).size.width * 0.9,
               height: MediaQuery.of(context).size.width * 0.9,
-              key: ValueKey<int>(questionIndex), // 使用问题索引作为key,
+              key: ValueKey<int>(questionIndex), // 使用问题索引作为key
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 255, 170, 207),
                 borderRadius: BorderRadius.circular(16),
@@ -185,7 +185,7 @@ class _TruthPageState extends State<TruthPage> {
                   SizedBox(height: 40),
                   ElevatedButton(
                     onPressed: () {
-                      fetchQuestion();
+                      _getRandomQuestion();
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
@@ -193,7 +193,8 @@ class _TruthPageState extends State<TruthPage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 40, vertical: 16),
                     ),
                     child: Text(
                       '下一题',

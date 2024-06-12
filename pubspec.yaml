@@ -29,6 +29,7 @@ flutter:
     - images/devil2.png
     - images/heartbeat.png
     - images/heartbeat2.png
+    - assets/truth.txt
   uses-material-design: true
 
 
