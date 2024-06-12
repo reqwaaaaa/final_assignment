@@ -56,11 +56,12 @@ class TruthPage extends StatefulWidget {
 
 class _TruthPageState extends State<TruthPage> {
   String question = '你最喜欢什么样的天气？';
+  int questionIndex = 0;
 
   Future<void> fetchQuestion() async {
     final url = 'https://truth-dare.p.rapidapi.com/truthDareApi/truth';
     final headers = {
-      'x-rapidapi-key': '0255fcf540mshb4b417debf46d03p1e0028jsn97a3a9f43aa6',
+      'x-rapidapi-key': 'YOUR_API_KEY_HERE', // 替换为您的API密钥
       'x-rapidapi-host': 'truth-dare.p.rapidapi.com',
     };
 
@@ -72,18 +73,21 @@ class _TruthPageState extends State<TruthPage> {
         print('Response Data: $data');  // 打印响应数据进行调试
         setState(() {
           question = data['question'] ?? '未能获取问题';
+          questionIndex += 1;
         });
       } else {
         print('Failed to load question: ${response.statusCode}');
         print('Response body: ${response.body}');
         setState(() {
           question = '加载问题失败';
+          questionIndex += 1;
         });
       }
     } catch (e) {
       print('Error: $e');
       setState(() {
         question = '加载问题时发生错误';
+        questionIndex += 1;
       });
     }
   }
@@ -119,11 +123,21 @@ class _TruthPageState extends State<TruthPage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
-          child: FractionallySizedBox(
-            widthFactor: 0.9,
-            heightFactor: 0.9,
+            child: AnimatedSwitcher(
+                duration: Duration(milliseconds: 200),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: Offset(0, 1), // 从下方进入
+                    end: Offset(0, 0),   // 位置归零
+                  ).animate(animation),
+                  child: child,
+                );
+              },
             child: Container(
-              padding: EdgeInsets.all(16.0),
+              width:MediaQuery.of(context).size.width * 0.9 ,
+              height: MediaQuery.of(context).size.width * 0.9,
+              key: ValueKey<int>(questionIndex), // 使用问题索引作为key,
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 255, 170, 207),
                 borderRadius: BorderRadius.circular(16),
