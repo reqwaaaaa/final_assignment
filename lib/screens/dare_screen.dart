@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import '../components/custom_text_field.dart';
 import '../components/custom_button.dart';
 import '../state/truth_or_dare_state.dart';
-import 'dart:io';
 import 'dart:math';
 import 'dart:async';
 import 'package:flutter/services.dart' show rootBundle; // 用于读取 assets 中的文件
@@ -82,7 +81,11 @@ class _DarePageState extends State<DarePage> {
       setState(() {
         questions =
             contents.split('\n').where((line) => line.isNotEmpty).toList();
-        _getRandomQuestion();
+        if (questions.isNotEmpty) {
+          _getRandomQuestion();
+        } else {
+          question = '未找到任何问题';
+        }
       });
     } catch (e) {
       print('Error reading questions file: $e');
@@ -211,6 +214,13 @@ class _DarePageState extends State<DarePage> {
                                   textStyle: TextStyle(
                                     fontSize: 24,
                                     fontWeight: FontWeight.bold,
+                                    shadows: [
+                                      Shadow(
+                                        offset: Offset(2, 2),
+                                        blurRadius: 4,
+                                        color: Colors.black.withOpacity(0.5),
+                                      ),
+                                    ],
                                   ),
                                   colors: [
                                     Colors.pink,
@@ -258,7 +268,7 @@ class _DarePageState extends State<DarePage> {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
-                      foregroundColor: Colors.pink,
+                      foregroundColor: const Color.fromARGB(255, 30, 121, 233),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
