@@ -7,7 +7,6 @@ import '../state/truth_or_dare_state.dart';
 import 'dart:math';
 import 'package:dod1/screens/dare_screen.dart';
 
-
 // class TruthOrDareScreen extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {
@@ -127,35 +126,27 @@ class TruthOrDareScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 194, 223, 255),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 162, 207, 255),
         elevation: 0,
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(30),
           ),
         ),
-        title: Text(
-          '真心话大冒险',
-          style: TextStyle(
-            fontSize: 24,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
+        title: Image.asset(
+          'images/真心话大冒险.png',
+          height: 30,
         ),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () {},
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.settings_outlined, color: Colors.white),
-            onPressed: () {},
-          ),
-        ],
       ),
+      backgroundColor: Color.fromARGB(255, 194, 223, 255),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

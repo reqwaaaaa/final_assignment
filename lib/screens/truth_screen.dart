@@ -53,6 +53,7 @@ class TruthScreen extends StatelessWidget {
 }
 
 
+
 class TruthPage extends StatefulWidget {
   @override
   _TruthPageState createState() => _TruthPageState();
@@ -76,6 +77,13 @@ class _TruthPageState extends State<TruthPage> {
     _loadQuestions();
     _startColorAnimation();
   }
+
+    void _showColorizeAnimation() {
+    setState(() {
+      showColorize = true;
+    });
+  }
+  
 
   Future<void> _loadQuestions() async {
     try {
@@ -102,12 +110,6 @@ class _TruthPageState extends State<TruthPage> {
         showColorize = false;
       });
     }
-  }
-
-  void _showColorizeAnimation() {
-    setState(() {
-      showColorize = true;
-    });
   }
 
   void _startColorAnimation() {
@@ -137,13 +139,9 @@ class _TruthPageState extends State<TruthPage> {
             bottom: Radius.circular(30),
           ),
         ),
-        title: Text(
-          '真心话',
-          style: TextStyle(
-            fontSize: 24,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
+        title: Image.asset(
+          'images/真心话.png',
+          height: 30,
         ),
       ),
       body: Padding(
@@ -179,21 +177,6 @@ class _TruthPageState extends State<TruthPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    '真心话',
-                    style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      shadows: [
-                        Shadow(
-                          offset: Offset(2, 2),
-                          blurRadius: 4,
-                          color: Colors.black.withOpacity(0.5),
-                        ),
-                      ],
-                    ),
-                  ),
                   SizedBox(height: 20),
                   Image.asset(
                     'images/heartbeat2.png',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import '../screens/login_screen.dart';
 import '../screens/register_screen.dart';
 import '../screens/home_screen.dart';
@@ -25,9 +26,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case '/truth_or_dare':
       return MaterialPageRoute(builder: (_) => TruthOrDareScreen());
     case '/truth':
-      return MaterialPageRoute(builder: (_) => TruthScreen());
+      return MaterialPageRoute(builder: (_) => TruthPage());
     case '/dare':
-      return MaterialPageRoute(builder: (_) => DareScreen());
+      return MaterialPageRoute(builder: (_) => DarePage());
     case '/admin':
       return MaterialPageRoute(builder: (_) => AdminScreen());
     case '/manage_questions':

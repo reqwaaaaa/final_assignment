@@ -139,13 +139,9 @@ class _DarePageState extends State<DarePage> {
             bottom: Radius.circular(30),
           ),
         ),
-        title: Text(
-          '大冒险',
-          style: TextStyle(
-            fontSize: 24,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
+        title: Image.asset(
+          'images/大冒险.png',
+          height: 30,
         ),
       ),
       body: Padding(
@@ -181,21 +177,6 @@ class _DarePageState extends State<DarePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    '大冒险',
-                    style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      shadows: [
-                        Shadow(
-                          offset: Offset(2, 2),
-                          blurRadius: 4,
-                          color: Colors.black.withOpacity(0.5),
-                        ),
-                      ],
-                    ),
-                  ),
                   SizedBox(height: 20),
                   Image.asset(
                     'images/devil2.png',

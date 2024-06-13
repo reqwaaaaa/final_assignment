@@ -25,13 +25,8 @@ dev_dependencies:
   
 flutter:
   assets:
-    - images/vv.jpg
-    - images/devil.png
-    - images/devil2.png
-    - images/heartbeat.png
-    - images/heartbeat2.png
-    - assets/truth.txt
-    - assets/dare.txt
+    - assets/
+    - images/
   uses-material-design: true
 
 

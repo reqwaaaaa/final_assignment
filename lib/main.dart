@@ -1,3 +1,4 @@
+import 'package:dod1/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'router/router.dart';
@@ -32,6 +33,8 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
 
 
 /*  auth_state中
