@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 162, 207, 255),
+        backgroundColor: Color.fromARGB(255, 183, 220, 255),
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
@@ -48,6 +48,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
+      backgroundColor: Color.fromARGB(255, 226, 240, 254),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

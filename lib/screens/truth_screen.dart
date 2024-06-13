@@ -125,7 +125,7 @@ class _TruthPageState extends State<TruthPage> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 170, 207),
+        backgroundColor: Color.fromARGB(255, 255, 162, 202),
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
