@@ -54,6 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Form(
           key: _formKey,
           child: Column(
+            padding:const EdgeInsets.all(16.0),
             children: [
               CustomTextField(
                 controller: _usernameController,
