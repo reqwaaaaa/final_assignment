@@ -34,19 +34,12 @@ class RandomChoiceScreen extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 10,
-                        offset: Offset(0, 5),
-                      ),
-                    ],
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Image.asset(
-                      'images/dice.png', // 更新为实际图片路径
-                      height: 200,
+                      'images/dice.png',
+                      height: 300,
                       width: double.infinity,
                       fit: BoxFit.cover,
                     ),
