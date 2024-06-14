@@ -20,7 +20,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-                appBar: AppBar(
+      appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 183, 220, 255),
         elevation: 0,
         centerTitle: true,
@@ -69,6 +69,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   return null;
                 },
               ),
+              SizedBox(height: 20),
               CustomTextField(
                 controller: _newPasswordController,
                 labelText: '新密码',
@@ -80,6 +81,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   return null;
                 },
               ),
+              SizedBox(height: 20),
               CustomTextField(
                 // 添加确认密码输入框
                 controller: _confirmPasswordController,

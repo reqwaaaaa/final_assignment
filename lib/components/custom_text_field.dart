@@ -5,6 +5,7 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final bool obscureText;
+  final InputDecoration? decoration;
 
   const CustomTextField({
     Key? key,
@@ -12,6 +13,7 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
     this.validator,
     this.obscureText = false,
+    this.decoration,
   }) : super(key: key);
 
   @override
@@ -19,14 +21,25 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       obscureText: obscureText,
-      decoration: InputDecoration(
-        labelText: labelText,
-        border: OutlineInputBorder(),
-      ),
+      decoration: decoration ??
+          InputDecoration(
+            labelText: labelText,
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Color.fromARGB(255, 165, 212, 255),width: 2), // 设置启用时的边框颜色
+              borderRadius: BorderRadius.circular(8), // 设置边框圆角
+            ),
+                    focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Color.fromARGB(255, 0, 132, 255),width: 2), // 设置聚焦时的边框颜色
+              borderRadius: BorderRadius.circular(8), // 设置边框圆角
+            ),
+            fillColor: const Color.fromARGB(255, 255, 255, 255), // 更改背景颜色
+            filled: true, // 启用填充
+          ),
       validator: validator,
     );
   }
 }
+
 /*
 labelText：输入框的标签文本。
 controller：用于控制输入框值的文本编辑控制器。

@@ -54,7 +54,6 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Form(
           key: _formKey,
           child: Column(
-            padding:const EdgeInsets.all(16.0),
             children: [
               CustomTextField(
                 controller: _usernameController,
@@ -66,6 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   return null;
                 },
               ),
+              SizedBox(height: 10),
               CustomTextField(
                 controller: _passwordController,
                 labelText: '密码',
@@ -96,11 +96,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   }
                 },
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/register');
                 },
+                style: TextButton.styleFrom(
+                  foregroundColor: Color.fromARGB(255, 63, 166, 255), // 设置按钮文字的颜色
+                  textStyle: TextStyle(
+                    fontSize: 14, // 设置字体大小
+                  ),
+                ),
                 child: Text('没有账号？注册'),
               ),
             ],

@@ -1,3 +1,4 @@
+import 'package:dod1/components/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../state/auth_state.dart';
@@ -13,13 +14,19 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('用户名: ${authState.username}'),
+            Text(
+              '用户名: ${authState.username}',
+              style: const TextStyle(
+                color: Color.fromARGB(255, 63, 166, 255),
+                fontSize: 20, // 设置字体大小
+              ),
+            ),
             SizedBox(height: 20),
-            ElevatedButton(
+            CustomButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/change_password');
               },
-              child: Text('修改密码'),
+              text: '修改密码',
             ),
             SizedBox(height: 20),
             CircleAvatar(

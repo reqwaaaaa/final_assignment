@@ -65,6 +65,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   return null;
                 },
               ),
+              SizedBox(height: 10),
               CustomTextField(
                 controller: _passwordController,
                 labelText: '密码',
