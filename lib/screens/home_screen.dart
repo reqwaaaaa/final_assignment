@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import '../state/auth_state.dart';
+import 'random_selection_screen.dart'; // 新增的导入
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -19,27 +20,108 @@ class _HomeScreenState extends State<HomeScreen> {
 
     List<Widget> _pages = [
       Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('欢迎, ${authState.username}'),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/truth_or_dare');
-              },
-              child: Text('开始游戏'),
-            ),
-            if (authState.isAdmin) ...[
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/admin');
-                },
-                child: Text('管理员面板'),
+              // 顶部图片
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 10,
+                      offset: Offset(0, 5),
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.asset(
+                    'images/top_image.jpg', // 将此路径更新为实际图片路径
+                    height: 200,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              // 按钮行
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  children: [
+                    // 第一个按钮
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RandomChoiceScreen()),
+                        );
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.healing),
+                          SizedBox(width: 10),
+                          Text('治好你的选择困难症'),
+                        ],
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 183, 220, 255),
+                        minimumSize: Size(double.infinity, 60), // 设置按钮的最小尺寸
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    // 第二个按钮
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/gathering_tool');
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.party_mode),
+                          SizedBox(width: 10),
+                          Text('聚会神器'),
+                        ],
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 183, 220, 255),
+                        minimumSize: Size(double.infinity, 60), // 设置按钮的最小尺寸
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/truth_or_dare');
+                      },
+                      child: Text('开始游戏'),
+                    ),
+                    if (authState.isAdmin) ...[
+                      SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/admin');
+                        },
+                        child: Text('管理员面板'),
+                      ),
+                    ],
+                  ],
+                ),
               ),
             ],
-          ],
+          ),
         ),
       ),
       ProfileScreen(),
