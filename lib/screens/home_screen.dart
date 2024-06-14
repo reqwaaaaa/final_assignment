@@ -91,14 +91,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     // 第二个按钮
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/gathering_tool');
+                        Navigator.pushNamed(context, '/truth_or_dare');
                       },
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(Icons.party_mode),
                           SizedBox(width: 10),
-                          Text('聚会神器'),
+                          Text('真心话大冒险'),
                         ],
                       ),
                       style: ElevatedButton.styleFrom(
@@ -110,12 +110,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/truth_or_dare');
-                      },
-                      child: Text('开始游戏'),
-                    ),
                     if (authState.isAdmin) ...[
                       SizedBox(height: 20),
                       ElevatedButton(
@@ -140,12 +134,6 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Color.fromARGB(255, 183, 220, 255),
         elevation: 0,
         centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(30),

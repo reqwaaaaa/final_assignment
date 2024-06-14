@@ -114,9 +114,14 @@ class _DarePageState extends State<DarePage> {
 
   void _startColorAnimation() {
     Timer.periodic(Duration(seconds: 5), (timer) {
-      setState(() {
-        colorIndex = (colorIndex + 1) % gradientColors.length;
-      });
+      try {
+        setState(() {
+          colorIndex = (colorIndex + 1) % gradientColors.length;
+        });
+      } catch (e) {
+        print('Caught exception in _startColorAnimation: $e');
+        // 可以在这里添加错误处理逻辑
+      }
     });
   }
 
@@ -180,66 +185,37 @@ class _DarePageState extends State<DarePage> {
                   SizedBox(height: 20),
                   Image.asset(
                     'images/devil2.png',
-                    height: 150,
+                    height: 250,
                   ),
                   SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: AnimatedSwitcher(
                       duration: Duration(milliseconds: 500),
-                      child: showColorize
-                          ? AnimatedTextKit(
-                              animatedTexts: [
-                                ColorizeAnimatedText(
-                                  question,
-                                  textStyle: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                    shadows: [
-                                      Shadow(
-                                        offset: Offset(2, 2),
-                                        blurRadius: 4,
-                                        color: Colors.black.withOpacity(0.5),
-                                      ),
-                                    ],
-                                  ),
-                                  colors: [
-                                    Colors.pink,
-                                    Colors.purple,
-                                    Color.fromARGB(255, 33, 75, 243),
-                                    const Color.fromARGB(255, 59, 255, 209),
-                                    const Color.fromARGB(255, 216, 244, 54),
-                                  ],
-                                  textAlign: TextAlign.center,
+                      child: AnimatedTextKit(
+                        animatedTexts: [
+                          TypewriterAnimatedText(
+                            question,
+                            textStyle: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              shadows: [
+                                Shadow(
+                                  offset: Offset(2, 2),
+                                  blurRadius: 4,
+                                  color: Colors.black.withOpacity(0.5),
                                 ),
                               ],
-                              isRepeatingAnimation: false,
-                              key: ValueKey('colorize'),
-                            )
-                          : AnimatedTextKit(
-                              animatedTexts: [
-                                TypewriterAnimatedText(
-                                  question,
-                                  textStyle: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    shadows: [
-                                      Shadow(
-                                        offset: Offset(2, 2),
-                                        blurRadius: 4,
-                                        color: Colors.black.withOpacity(0.5),
-                                      ),
-                                    ],
-                                  ),
-                                  textAlign: TextAlign.center,
-                                  speed: Duration(milliseconds: 100),
-                                ),
-                              ],
-                              isRepeatingAnimation: false,
-                              onFinished: _showColorizeAnimation,
-                              key: ValueKey('typewriter'),
                             ),
+                            textAlign: TextAlign.center,
+                            speed: Duration(milliseconds: 100),
+                          ),
+                        ],
+                        isRepeatingAnimation: false,
+                        onFinished: _showColorizeAnimation,
+                        key: ValueKey('typewriter'),
+                      ),
                     ),
                   ),
                   SizedBox(height: 40),
