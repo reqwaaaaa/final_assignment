@@ -19,6 +19,8 @@ dependencies:
   animated_text_kit: ^4.2.1
   google_nav_bar: ^5.0.6
   line_icons: ^2.0.3
+  flutter_staggered_animations: ^1.0.0
+  flutter_swiper_null_safety: ^1.0.2
   
 dev_dependencies:
   flutter_test:

@@ -1,10 +1,12 @@
 import 'package:dod1/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:provider/provider.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import '../state/auth_state.dart';
-import 'random_selection_screen.dart'; // 新增的导入
+import 'random_selection_screen.dart'; 
+
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -13,6 +15,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+  List<String> _imageList = [
+    'images/example1.jpg',
+    'images/example2.jpg',
+    'images/example3.jpg',
+    // Add more image URLs as needed
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -24,30 +32,31 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(height: 20),
-              // 顶部图片
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 16),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 10,
-                      offset: Offset(0, 5),
-                    ),
-                  ],
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(
-                    'images/top_image.jpg', // 将此路径更新为实际图片路径
-                    height: 200,
-                    width: double.infinity,
+              Swiper(
+                itemCount: _imageList.length,
+                itemBuilder: (context, index) {
+                  return Image.network(
+                    _imageList[index],
                     fit: BoxFit.cover,
-                  ),
-                ),
+                  );
+                },
+                autoplay: true,
+                onIndexChanged: (index) {},
+                onTap: (index) {},
+                duration: 1000,
+                autoplayDelay: 2000,
+                autoplayDisableOnInteraction: false,
+                loop: true,
+                scrollDirection: Axis.horizontal,
+                index: 0,
+                scale: 0.6,
+                viewportFraction: 0.8,
+                indicatorLayout: PageIndicatorLayout.COLOR,
+                pagination: new SwiperPagination(),
+                control: new SwiperControl(),
               ),
+              SizedBox(height: 20),
+              // 按钮行
               SizedBox(height: 20),
               // 按钮行
               Padding(
@@ -201,7 +210,7 @@ class _HomeScreenState extends State<HomeScreen> {
               _selectedIndex = index;
             });
           },
-          tabs: [
+          tabs: const [
             GButton(
               icon: LineIcons.home,
               text: 'Home',
