@@ -5,7 +5,6 @@ import 'state/auth_state.dart';
 import 'state/spin_wheel_state.dart';
 import 'state/truth_or_dare_state.dart';
 import 'state/theme_provider.dart'; 
-import 'screens/home_screen.dart';
 
 void main() {
   runApp(

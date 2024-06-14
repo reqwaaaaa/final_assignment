@@ -52,8 +52,7 @@ class RandomChoiceScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     child: Image.asset(
                       'images/dice.png',
-                      height: 300,
-                      width: double.infinity,
+                      width: MediaQuery.of(context).size.width * 0.9,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -102,8 +101,9 @@ class RandomChoiceScreen extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.view_module,
-                      color: Color.fromARGB(255, 255, 255, 255),
+                      Icon(
+                        Icons.view_module,
+                        color: Color.fromARGB(255, 255, 255, 255),
                       ),
                       SizedBox(width: 10),
                       Text(
@@ -132,8 +132,9 @@ class RandomChoiceScreen extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.folder,
-                      color: Color.fromARGB(255, 255, 255, 255),
+                      Icon(
+                        Icons.folder,
+                        color: Color.fromARGB(255, 255, 255, 255),
                       ),
                       SizedBox(width: 10),
                       Text(
@@ -162,8 +163,9 @@ class RandomChoiceScreen extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.history,
-                      color: Color.fromARGB(255, 255, 255, 255),
+                      Icon(
+                        Icons.history,
+                        color: Color.fromARGB(255, 255, 255, 255),
                       ),
                       SizedBox(width: 10),
                       Text(
