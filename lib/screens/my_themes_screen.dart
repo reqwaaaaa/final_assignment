@@ -1,65 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../state/theme_provider.dart';
 
 class MyThemesScreen extends StatelessWidget {
-  final List<String> themes = [
-    '主题1',
-    '主题2',
-    '主题3',
-    '主题4'
-  ]; // Replace with dynamic data
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 183, 220, 255),
-        elevation: 0,
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30),
-          ),
-        ),
-        title: Text(
-          '我的主题',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
+        title: Text('我的主题'),
       ),
-      backgroundColor: Color.fromARGB(255, 226, 240, 254),
-      body: ListView.builder(
-        padding: EdgeInsets.all(16),
-        itemCount: themes.length,
-        itemBuilder: (context, index) {
-          return Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: ListTile(
-              title: Text(themes[index]),
-              trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.share),
-                    onPressed: () {
-                      // Share functionality
-                    },
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.delete),
-                    onPressed: () {
-                      // Delete functionality
-                    },
-                  ),
-                ],
-              ),
-            ),
+      body: Consumer<ThemeProvider>(
+        builder: (context, themeProvider, child) {
+          if (themeProvider.themes.isEmpty) {
+            return Center(child: Text('没有主题'));
+          }
+
+          return ListView.builder(
+            itemCount: themeProvider.themes.length,
+            itemBuilder: (context, index) {
+              final theme = themeProvider.themes[index];
+              return ListTile(
+                title: Text(theme.name),
+                subtitle: Text(theme.description),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.edit),
+                      onPressed: () {
+                        // 编辑主题
+                      },
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () {
+                        themeProvider.removeTheme(index);
+                      },
+                    ),
+                  ],
+                ),
+              );
+            },
           );
         },
       ),

@@ -10,6 +10,7 @@ import '../screens/truth_screen.dart';
 import '../screens/dare_screen.dart';
 import '../screens/admin_screen.dart';
 import '../screens/manage_questions_screen.dart';
+import '../screens/my_themes_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -33,6 +34,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (_) => AdminScreen());
     case '/manage_questions':
       return MaterialPageRoute(builder: (_) => ManageQuestionsScreen());
+    case '/my_themes':
+      return MaterialPageRoute(builder: (_) => MyThemesScreen());
     default:
       return MaterialPageRoute(builder: (_) => LoginScreen());
   }

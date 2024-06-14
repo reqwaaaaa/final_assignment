@@ -8,9 +8,7 @@ class CreateThemeScreen extends StatefulWidget {
 class _CreateThemeScreenState extends State<CreateThemeScreen> {
   final _themeNameController = TextEditingController();
   final _descriptionController = TextEditingController();
-  final List<TextEditingController> _optionControllers = [
-    TextEditingController()
-  ];
+  final List<TextEditingController> _optionControllers = [TextEditingController()];
 
   void _addOption() {
     setState(() {
@@ -25,9 +23,6 @@ class _CreateThemeScreenState extends State<CreateThemeScreen> {
   }
 
   void _saveTheme() {
-    // Save the theme logic here
-
-    // After saving, navigate to 'My Themes' screen
     Navigator.pushNamed(context, '/my_themes');
   }
 
@@ -116,16 +111,17 @@ class _CreateThemeScreenState extends State<CreateThemeScreen> {
                 },
               ),
             ),
-            TextButton(
+            TextButton.icon(
               onPressed: _addOption,
-              child: Text('添加选项'),
+              icon: Icon(Icons.add_circle, color: Colors.blue),
+              label: Text('添加选项'),
             ),
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: _saveTheme,
               child: Text('保存到 “我的主题”'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 183, 220, 255),
+                backgroundColor: Color.fromARGB(255, 255, 255, 255),
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),

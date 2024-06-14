@@ -1,10 +1,11 @@
-import 'package:dod1/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'router/router.dart';
 import 'state/auth_state.dart';
 import 'state/spin_wheel_state.dart';
 import 'state/truth_or_dare_state.dart';
+import 'state/theme_provider.dart'; 
+import 'screens/home_screen.dart';
 
 void main() {
   runApp(
@@ -13,6 +14,8 @@ void main() {
         ChangeNotifierProvider(create: (_) => AuthState()),
         ChangeNotifierProvider(create: (_) => SpinWheelState()),
         ChangeNotifierProvider(create: (_) => TruthOrDareState()),
+        ChangeNotifierProvider(
+            create: (_) => ThemeProvider()), // 添加 ThemeProvider
       ],
       child: MyApp(),
     ),
