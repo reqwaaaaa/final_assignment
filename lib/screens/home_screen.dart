@@ -5,8 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import '../state/auth_state.dart';
-import 'random_selection_screen.dart'; 
-
+import 'random_selection_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -15,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
-  List<String> _imageList = [
+  final List<String> _imageList = [
     'images/example1.jpg',
     'images/example2.jpg',
     'images/example3.jpg',
@@ -32,33 +31,33 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Swiper(
-                itemCount: _imageList.length,
-                itemBuilder: (context, index) {
-                  return Image.network(
-                    _imageList[index],
-                    fit: BoxFit.cover,
-                  );
-                },
-                autoplay: true,
-                onIndexChanged: (index) {},
-                onTap: (index) {},
-                duration: 1000,
-                autoplayDelay: 2000,
-                autoplayDisableOnInteraction: false,
-                loop: true,
-                scrollDirection: Axis.horizontal,
-                index: 0,
-                scale: 0.6,
-                viewportFraction: 0.8,
-                indicatorLayout: PageIndicatorLayout.COLOR,
-                pagination: new SwiperPagination(),
-                control: new SwiperControl(),
+              Container(
+                height: 200, // 设置一个固定的高度
+                child: Swiper(
+                  itemCount: _imageList.length,
+                  itemBuilder: (context, index) {
+                    return Image.asset(
+                      _imageList[index],
+                      fit: BoxFit.cover,
+                    );
+                  },
+                  autoplay: true,
+                  onIndexChanged: (index) {},
+                  onTap: (index) {},
+                  duration: 1000,
+                  autoplayDelay: 2000,
+                  autoplayDisableOnInteraction: false,
+                  loop: true,
+                  scrollDirection: Axis.horizontal,
+                  index: 0,
+                  scale: 0.6,
+                  viewportFraction: 0.8,
+                  indicatorLayout: PageIndicatorLayout.COLOR,
+                  pagination: new SwiperPagination(),
+                  control: new SwiperControl(),
+                ),
               ),
-              SizedBox(height: 20),
-              // 按钮行
-              SizedBox(height: 20),
-              // 按钮行
+              SizedBox(height: 20), // 减少这个间距，使轮播图上移
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
