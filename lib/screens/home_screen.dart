@@ -74,12 +74,23 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(Icons.healing),
+                          Icon(
+                            Icons.healing,
+                            color: Color.fromARGB(255, 255, 255, 255),
+                          ),
                           SizedBox(width: 10),
-                          Text('治好你的选择困难症'),
+                          Text(
+                            '治好你的选择困难症',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+                          ),
                         ],
                       ),
                       style: ElevatedButton.styleFrom(
+                        foregroundColor: Color.fromARGB(255, 25, 125, 255),
                         backgroundColor: Color.fromARGB(255, 183, 220, 255),
                         minimumSize: Size(double.infinity, 60), // 设置按钮的最小尺寸
                         shape: RoundedRectangleBorder(
@@ -96,12 +107,23 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(Icons.party_mode),
+                          Icon(
+                            Icons.party_mode,
+                            color: Color.fromARGB(255, 255, 255, 255),
+                          ),
                           SizedBox(width: 10),
-                          Text('真心话大冒险'),
+                          Text(
+                            '真心话大冒险',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+                          ),
                         ],
                       ),
                       style: ElevatedButton.styleFrom(
+                        foregroundColor: Color.fromARGB(255, 25, 125, 255),
                         backgroundColor: Color.fromARGB(255, 183, 220, 255),
                         minimumSize: Size(double.infinity, 60), // 设置按钮的最小尺寸
                         shape: RoundedRectangleBorder(

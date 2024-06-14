@@ -20,8 +20,21 @@ class RandomChoiceScreen extends StatelessWidget {
             bottom: Radius.circular(30),
           ),
         ),
-        title:
-            Text('随机选择', style: TextStyle(color: Colors.white, fontSize: 24)),
+        title: Text(
+          '随机选择',
+          style: TextStyle(
+            fontSize: 24,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            shadows: [
+              Shadow(
+                offset: Offset(2, 2),
+                blurRadius: 4,
+                color: Colors.black.withOpacity(0.5),
+              ),
+            ],
+          ),
+        ),
       ),
       backgroundColor: Color.fromARGB(255, 226, 240, 254),
       body: Center(
@@ -31,7 +44,6 @@ class RandomChoiceScreen extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: 20),
-                // 顶部图片
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
@@ -59,9 +71,19 @@ class RandomChoiceScreen extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.add),
+                      Icon(
+                        Icons.add,
+                        color: Color.fromARGB(255, 255, 255, 255),
+                      ),
                       SizedBox(width: 10),
-                      Text('创建主题'),
+                      Text(
+                        '创建主题',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 255, 255, 255),
+                        ),
+                      )
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
@@ -80,9 +102,18 @@ class RandomChoiceScreen extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.view_module),
+                      Icon(Icons.view_module,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      ),
                       SizedBox(width: 10),
-                      Text('主题模版'),
+                      Text(
+                        '主题模版',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 255, 255, 255),
+                        ),
+                      ),
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
@@ -96,14 +127,23 @@ class RandomChoiceScreen extends StatelessWidget {
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    // TODO: 实现我的主题功能
+                    Navigator.pushNamed(context, '/my_themes');
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.folder),
+                      Icon(Icons.folder,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      ),
                       SizedBox(width: 10),
-                      Text('我的主题'),
+                      Text(
+                        '我的主题',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 255, 255, 255),
+                        ),
+                      ),
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
@@ -122,9 +162,18 @@ class RandomChoiceScreen extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.history),
+                      Icon(Icons.history,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      ),
                       SizedBox(width: 10),
-                      Text('历史记录'),
+                      Text(
+                        '历史记录',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 255, 255, 255),
+                        ),
+                      ),
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
