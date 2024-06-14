@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'create_theme_screen.dart';
 
 class RandomChoiceScreen extends StatelessWidget {
   @override
@@ -49,7 +50,11 @@ class RandomChoiceScreen extends StatelessWidget {
                 // 按钮
                 ElevatedButton(
                   onPressed: () {
-                    // TODO: 实现创建主题功能
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CreateThemeScreen()),
+                    );
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
