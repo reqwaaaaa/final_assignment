@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../components/custom_text_field.dart';
-import '../components/custom_button.dart';
-import '../state/truth_or_dare_state.dart';
-import 'dart:io';
 import 'dart:math';
 import 'dart:async';
 import 'package:flutter/services.dart' show rootBundle; // 用于读取 assets 中的文件

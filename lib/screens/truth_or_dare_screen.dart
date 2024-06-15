@@ -1,10 +1,6 @@
 import 'package:dod1/screens/truth_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../components/custom_button.dart';
-import '../components/truth_or_dare_card.dart';
-import '../state/truth_or_dare_state.dart';
-import 'dart:math';
+
 import 'package:dod1/screens/dare_screen.dart';
 
 // class TruthOrDareScreen extends StatelessWidget {
