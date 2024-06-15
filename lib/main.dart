@@ -4,7 +4,7 @@ import 'router/router.dart';
 import 'state/auth_state.dart';
 import 'state/spin_wheel_state.dart';
 import 'state/truth_or_dare_state.dart';
-import 'state/theme_provider.dart'; 
+import 'state/theme_provider.dart';
 
 void main() {
   runApp(
@@ -13,8 +13,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => AuthState()),
         ChangeNotifierProvider(create: (_) => SpinWheelState()),
         ChangeNotifierProvider(create: (_) => TruthOrDareState()),
-        ChangeNotifierProvider(
-            create: (_) => ThemeProvider()), // 添加 ThemeProvider
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
       ],
       child: MyApp(),
     ),

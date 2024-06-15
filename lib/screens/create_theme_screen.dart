@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../state/theme_provider.dart';
 
 class CreateThemeScreen extends StatefulWidget {
+  final int? themeIndex;
+
+  CreateThemeScreen({this.themeIndex});
+
   @override
   _CreateThemeScreenState createState() => _CreateThemeScreenState();
 }
@@ -8,7 +14,23 @@ class CreateThemeScreen extends StatefulWidget {
 class _CreateThemeScreenState extends State<CreateThemeScreen> {
   final _themeNameController = TextEditingController();
   final _descriptionController = TextEditingController();
-  final List<TextEditingController> _optionControllers = [TextEditingController()];
+  final List<TextEditingController> _optionControllers = [];
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.themeIndex != null) {
+      final theme = Provider.of<ThemeProvider>(context, listen: false)
+          .themes[widget.themeIndex!];
+      _themeNameController.text = theme.name;
+      _descriptionController.text = theme.description;
+      for (var option in theme.options) {
+        _optionControllers.add(TextEditingController(text: option));
+      }
+    } else {
+      _optionControllers.add(TextEditingController());
+    }
+  }
 
   void _addOption() {
     setState(() {
@@ -23,6 +45,19 @@ class _CreateThemeScreenState extends State<CreateThemeScreen> {
   }
 
   void _saveTheme() {
+    final theme = ThemeModel(
+      name: _themeNameController.text,
+      description: _descriptionController.text,
+      options: _optionControllers.map((controller) => controller.text).toList(),
+    );
+
+    if (widget.themeIndex == null) {
+      Provider.of<ThemeProvider>(context, listen: false).addTheme(theme);
+    } else {
+      Provider.of<ThemeProvider>(context, listen: false)
+          .updateTheme(widget.themeIndex!, theme);
+    }
+
     Navigator.pushNamed(context, '/my_themes');
   }
 
@@ -45,7 +80,7 @@ class _CreateThemeScreenState extends State<CreateThemeScreen> {
           ),
         ),
         title: Text(
-          '创建主题',
+          widget.themeIndex == null ? '创建主题' : '编辑主题',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),

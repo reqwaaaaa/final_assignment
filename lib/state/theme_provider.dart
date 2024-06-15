@@ -1,30 +1,31 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
-class Theme {
+class ThemeModel {
   String name;
   String description;
   List<String> options;
 
-  Theme({required this.name, required this.description, required this.options});
+  ThemeModel(
+      {required this.name, required this.description, required this.options});
 }
 
-class ThemeProvider extends ChangeNotifier {
-  List<Theme> _themes = [];
+class ThemeProvider with ChangeNotifier {
+  List<ThemeModel> _themes = [];
 
-  List<Theme> get themes => _themes;
+  List<ThemeModel> get themes => _themes;
 
-  void addTheme(Theme theme) {
+  void addTheme(ThemeModel theme) {
     _themes.add(theme);
     notifyListeners();
   }
 
-  void removeTheme(int index) {
-    _themes.removeAt(index);
+  void updateTheme(int index, ThemeModel theme) {
+    _themes[index] = theme;
     notifyListeners();
   }
 
-  void updateTheme(int index, Theme theme) {
-    _themes[index] = theme;
+  void deleteTheme(int index) {
+    _themes.removeAt(index);
     notifyListeners();
   }
 }
