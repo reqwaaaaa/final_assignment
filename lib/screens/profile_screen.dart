@@ -2,8 +2,27 @@ import 'package:dod1/components/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../state/auth_state.dart';
+import 'package:image_picker/image_picker.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  final ImagePicker _imagePicker = ImagePicker();
+  late ImageProvider<Object> _avatarImage; // 添加_avatarImage变量
+
+  _ProfileScreenState() {
+    _avatarImage = AssetImage('images/vv.jpg'); // 初始化_avatarImage变量
+  }
+
+  void updateAvatar(String imagePath) {
+    setState(() {
+      _avatarImage = AssetImage(imagePath);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var authState = Provider.of<AuthState>(context);
@@ -30,7 +49,8 @@ class ProfileScreen extends StatelessWidget {
               children: [
                 CircleAvatar(
                   // 用户头像
-                  backgroundImage: AssetImage('images/vv.jpg'),
+                  backgroundImage: _avatarImage ?? AssetImage('images/vv.jpg'),
+                  // 从本地加载头像图片，如果没有则使用默认头像
                   radius: 50,
                 ),
                 SizedBox(width: 20),
@@ -55,14 +75,19 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   CustomButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/change_nickname'); // 修改昵称按钮点击事件
+                      Navigator.pushNamed(
+                          context, '/change_nickname'); // 修改昵称按钮点击事件
                     },
                     text: '修改昵称',
                   ),
                   SizedBox(height: 20),
                   CustomButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/change_avatar'); // 修改头像按钮点击事件
+                    onPressed: () async {
+                      final pickedFile = await _imagePicker.pickImage(
+                          source: ImageSource.gallery);
+                      if (pickedFile != null) {
+                        updateAvatar('images/${pickedFile.name}'); // 更新头像图片
+                      }
                     },
                     text: '修改头像',
                   ),
@@ -83,7 +108,8 @@ class ProfileScreen extends StatelessWidget {
                   SizedBox(height: 20),
                   CustomButton(
                     onPressed: () {
-                      Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, '/login', (route) => false);
                     },
                     text: '退出登录',
                   ),
