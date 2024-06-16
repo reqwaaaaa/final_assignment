@@ -29,6 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
         title: Text(
           '登录',
           style: TextStyle(
+            fontFamily: "Font3",
             fontSize: 24,
             color: Colors.white,
             fontWeight: FontWeight.bold,

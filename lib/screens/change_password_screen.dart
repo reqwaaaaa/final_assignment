@@ -38,6 +38,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         title: Text(
           '修改密码',
           style: TextStyle(
+            fontFamily: "Font3",
             fontSize: 24,
             color: Colors.white,
             fontWeight: FontWeight.bold,

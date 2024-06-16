@@ -28,16 +28,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
     var authState = Provider.of<AuthState>(context);
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: Text('个人信息'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.blue,
+      //   title: Text('个人信息'),
+      //   leading: IconButton(
+      //     icon: Icon(Icons.arrow_back),
+      //     onPressed: () {
+      //       Navigator.pop(context);
+      //     },
+      //   ),
+      // ),
       backgroundColor: Color.fromARGB(255, 226, 240, 254),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

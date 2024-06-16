@@ -123,7 +123,7 @@ class TruthOrDareScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 183, 220, 255),
+        backgroundColor: Color.fromARGB(255, 255, 162, 202),
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
@@ -137,9 +137,21 @@ class TruthOrDareScreen extends StatelessWidget {
             bottom: Radius.circular(30),
           ),
         ),
-        title: Image.asset(
-          'images/真心话大冒险.png',
-          height: 30,
+        title: Text(
+          "真心话大冒险",
+          style: TextStyle(
+            fontFamily: "Font3",
+            fontSize: 24,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            shadows: [
+              Shadow(
+                offset: Offset(2, 2),
+                blurRadius: 4,
+                color: Colors.black.withOpacity(0.5),
+              ),
+            ],
+          ),
         ),
       ),
       backgroundColor: Color.fromARGB(255, 226, 240, 254),

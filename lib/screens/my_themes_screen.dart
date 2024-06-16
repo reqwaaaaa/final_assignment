@@ -26,6 +26,7 @@ class MyThemesScreen extends StatelessWidget {
         title: Text(
           '我的主题',
           style: TextStyle(
+            fontFamily: "Font3",
             fontSize: 24,
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -55,6 +56,7 @@ class MyThemesScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final theme = themeProvider.themes[index];
                     return Card(
+                      color: Colors.white,
                       margin: EdgeInsets.symmetric(vertical: 10),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -115,13 +117,13 @@ class MyThemesScreen extends StatelessWidget {
                 );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Add your desired action here
-        },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.blue,
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     // Add your desired action here
+      //   },
+      //   child: Icon(Icons.add),
+      //   backgroundColor: Colors.blue,
+      // ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
@@ -130,6 +132,7 @@ class MyThemesScreen extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         title: Text('确认删除'),
         content: Text('你确定要删除这个主题吗？'),
         actions: [
@@ -137,7 +140,7 @@ class MyThemesScreen extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: Text('取消', style: TextStyle(color: Colors.blue)),
+            child: Text('取消', style: TextStyle(color: Color.fromARGB(255, 167, 215, 255))),
           ),
           TextButton(
             onPressed: () {

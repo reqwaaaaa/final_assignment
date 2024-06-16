@@ -26,6 +26,7 @@ class AdminScreen extends StatelessWidget {
         title: Text(
           '管理员面板',
           style: TextStyle(
+            fontFamily: "Font3",
             fontSize: 24,
             color: Colors.white,
             fontWeight: FontWeight.bold,

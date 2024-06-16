@@ -65,6 +65,7 @@ class _ManageQuestionsScreenState extends State<ManageQuestionsScreen>
         title: Text(
           '管理问题',
           style: TextStyle(
+            fontFamily: "Font3",
             fontSize: 24,
             color: Colors.white,
             fontWeight: FontWeight.bold,

@@ -78,12 +78,31 @@ class _WheelOfFortuneScreenState extends State<WheelOfFortuneScreen>
         backgroundColor: Color.fromARGB(255, 183, 220, 255),
         elevation: 0,
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(30),
+          ),
+        ),
         title: Text(
-          '转盘页面',
+          "转盘页面",
           style: TextStyle(
+            fontFamily: "Font3",
+            fontSize: 24,
             color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 24,
+            shadows: [
+              Shadow(
+                offset: Offset(2, 2),
+                blurRadius: 4,
+                color: Colors.black.withOpacity(0.5),
+              ),
+            ],
           ),
         ),
       ),
@@ -94,7 +113,7 @@ class _WheelOfFortuneScreenState extends State<WheelOfFortuneScreen>
           children: [
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
@@ -105,20 +124,19 @@ class _WheelOfFortuneScreenState extends State<WheelOfFortuneScreen>
                 ),
               ),
             ),
-            SizedBox(height: 20),
             ElevatedButton(
               onPressed: _isSpinning
                   ? null
                   : _startSpin, // Disable button when spinning
               child: Text('开始！'), // 停止按钮的文本
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                foregroundColor: Colors.white,
-                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                backgroundColor: Color.fromARGB(255, 158, 208, 255), // 默认背景颜色
+                foregroundColor: Colors.white, // 默认文本颜色
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                textStyle: TextStyle(fontSize: 16),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                elevation: 5,
               ),
             ),
           ],

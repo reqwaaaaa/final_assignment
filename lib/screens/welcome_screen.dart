@@ -19,7 +19,36 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Welcome'),
+        backgroundColor: Color.fromARGB(255, 183, 220, 255),
+        elevation: 0,
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(30),
+          ),
+        ),
+        title: Text(
+          "Welcome!",
+          style: TextStyle(
+            fontFamily: "Font3",
+            fontSize: 24,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            shadows: [
+              Shadow(
+                offset: Offset(2, 2),
+                blurRadius: 4,
+                color: Colors.black.withOpacity(0.5),
+              ),
+            ],
+          ),
+        ),
       ),
       backgroundColor: Colors.lightBlue[100], // 设置页面背景颜色为浅蓝色
       body: Center(

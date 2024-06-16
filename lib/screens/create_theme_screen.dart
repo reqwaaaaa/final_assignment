@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../state/theme_provider.dart';
 import '../components/WheelOfFortuneScreen.dart'; // 导入转盘页面
+import '../components/custom_button.dart';
 
 class CreateThemeScreen extends StatefulWidget {
   final int? themeIndex;
@@ -93,7 +94,19 @@ class _CreateThemeScreenState extends State<CreateThemeScreen> {
         ),
         title: Text(
           widget.themeIndex == null ? '创建主题' : '编辑主题',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontFamily: "Font3",
+            fontSize: 24,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            shadows: [
+              Shadow(
+                offset: Offset(2, 2),
+                blurRadius: 4,
+                color: Colors.black.withOpacity(0.5),
+              ),
+            ],
+          ),
         ),
       ),
       backgroundColor: Color.fromARGB(255, 226, 240, 254),
@@ -158,34 +171,19 @@ class _CreateThemeScreenState extends State<CreateThemeScreen> {
                 },
               ),
             ),
-            TextButton.icon(
+            CustomButton(
               onPressed: _addOption,
-              icon: Icon(Icons.add_circle, color: Colors.blue),
-              label: Text('添加选项'),
+              text: '添加选项',
             ),
             SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: _startChoosing, // 点击开始选择按钮跳转到转盘页面
-              child: Text('开始选择'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
+            CustomButton(
+              onPressed: _startChoosing,
+              text: '开始选择',
             ),
             SizedBox(height: 10),
-            ElevatedButton(
+            CustomButton(
               onPressed: _saveTheme,
-              child: Text('保存到 “我的主题”'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
+              text: '保存到 “我的主题”',
             ),
           ],
         ),

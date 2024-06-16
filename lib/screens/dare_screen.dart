@@ -144,9 +144,21 @@ class _DarePageState extends State<DarePage> {
             bottom: Radius.circular(30),
           ),
         ),
-        title: Image.asset(
-          'images/大冒险.png',
-          height: 30,
+        title: Text(
+          "大冒险",
+          style: TextStyle(
+            fontFamily: "Font3",
+            fontSize: 24,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            shadows: [
+              Shadow(
+                offset: Offset(2, 2),
+                blurRadius: 4,
+                color: Colors.black.withOpacity(0.5),
+              ),
+            ],
+          ),
         ),
       ),
       body: Padding(
