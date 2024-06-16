@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../state/theme_provider.dart';
+import '../components/WheelOfFortuneScreen.dart'; // 导入转盘页面
 
 class CreateThemeScreen extends StatefulWidget {
   final int? themeIndex;
@@ -58,7 +59,18 @@ class _CreateThemeScreenState extends State<CreateThemeScreen> {
           .updateTheme(widget.themeIndex!, theme);
     }
 
-    Navigator.pushNamed(context, '/my_themes');
+    Navigator.pop(context);
+  }
+
+  void _startChoosing() {
+    List<String> options =
+        _optionControllers.map((controller) => controller.text).toList();
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => WheelOfFortuneScreen(options: options),
+      ),
+    );
   }
 
   @override
@@ -150,6 +162,18 @@ class _CreateThemeScreenState extends State<CreateThemeScreen> {
               onPressed: _addOption,
               icon: Icon(Icons.add_circle, color: Colors.blue),
               label: Text('添加选项'),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: _startChoosing, // 点击开始选择按钮跳转到转盘页面
+              child: Text('开始选择'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
             ),
             SizedBox(height: 10),
             ElevatedButton(

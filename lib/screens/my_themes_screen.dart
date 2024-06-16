@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../state/theme_provider.dart';
 import 'create_theme_screen.dart';
 
+
 class MyThemesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,10 @@ class MyThemesScreen extends StatelessWidget {
         title: Text(
           '我的主题',
           style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24),
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          ),
         ),
       ),
       backgroundColor: Color.fromARGB(255, 226, 240, 254),
@@ -27,74 +31,80 @@ class MyThemesScreen extends StatelessWidget {
                     style: TextStyle(color: Colors.grey, fontSize: 18),
                   ),
                 )
-              : Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: ListView.builder(
-                    itemCount: themeProvider.themes.length,
-                    itemBuilder: (context, index) {
-                      final theme = themeProvider.themes[index];
-                      return Card(
-                        margin: EdgeInsets.symmetric(vertical: 10),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+              : ListView.builder(
+                  padding: EdgeInsets.all(16.0),
+                  itemCount: themeProvider.themes.length,
+                  itemBuilder: (context, index) {
+                    final theme = themeProvider.themes[index];
+                    return Card(
+                      margin: EdgeInsets.symmetric(vertical: 10),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      elevation: 5,
+                      child: ListTile(
+                        contentPadding: EdgeInsets.all(16),
+                        title: Text(
+                          theme.name,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Color.fromARGB(255, 80, 130, 180),
+                          ),
                         ),
-                        elevation: 5,
-                        child: ListTile(
-                          contentPadding: EdgeInsets.all(16),
-                          title: Text(
-                            theme.name,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Color.fromARGB(255, 80, 130, 180),
-                            ),
+                        subtitle: Text(
+                          theme.description,
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 80, 130, 180),
+                            fontSize: 16,
                           ),
-                          subtitle: Text(
-                            theme.description,
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 80, 130, 180),
-                              fontSize: 16,
-                            ),
-                          ),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                icon: Icon(Icons.edit, color: Colors.blue),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          CreateThemeScreen(themeIndex: index),
-                                    ),
-                                  );
-                                },
-                              ),
-                              IconButton(
-                                icon: Icon(Icons.delete, color: Colors.red),
-                                onPressed: () {
-                                  _confirmDelete(context, index);
-                                },
-                              ),
-                            ],
-                          ),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    CreateThemeScreen(themeIndex: index),
-                              ),
-                            );
-                          },
                         ),
-                      );
-                    },
-                  ),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              icon: Icon(Icons.edit, color: Colors.blue),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        CreateThemeScreen(themeIndex: index),
+                                  ),
+                                );
+                              },
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.delete, color: Colors.red),
+                              onPressed: () {
+                                _confirmDelete(context, index);
+                              },
+                            ),
+                          ],
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  CreateThemeScreen(themeIndex: index),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  },
                 );
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add your desired action here
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.blue,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 

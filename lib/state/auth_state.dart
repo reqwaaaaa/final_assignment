@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthState with ChangeNotifier {
   String? _username;
+  String? _avatarPath;
   bool _isLoggedIn;
   bool _isAdmin;
   List<Map<String, dynamic>> _userLogins;
@@ -16,6 +17,7 @@ class AuthState with ChangeNotifier {
   }
 
   String? get username => _username;
+  String? get avatarPath => _avatarPath;
   bool get isLoggedIn => _isLoggedIn;
   bool get isAdmin => _isAdmin;
   List<Map<String, dynamic>> get userLogins => _userLogins;
@@ -23,6 +25,7 @@ class AuthState with ChangeNotifier {
   Future<void> _loadUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _username = prefs.getString('username');
+    _avatarPath = prefs.getString('avatarPath');
     _isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
     _isAdmin = _username == 'admin';
 
@@ -84,6 +87,7 @@ class AuthState with ChangeNotifier {
     _isAdmin = false;
     await prefs.remove('username');
     await prefs.remove('isLoggedIn');
+    await prefs.remove('avatarPath');
     notifyListeners();
   }
 
@@ -92,13 +96,29 @@ class AuthState with ChangeNotifier {
     Set<String> keys = prefs.getKeys();
     List<Map<String, String>> users = [];
     for (var key in keys) {
-      if (key != 'username' && key != 'isLoggedIn') {
+      if (key != 'username' && key != 'isLoggedIn' && key != 'userLogins') {
         users.add({key: prefs.getString(key) ?? ''});
       }
     }
     return users;
   }
+
+  Future<void> setUsername(String username) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _username = username;
+    await prefs.setString('username', username);
+    notifyListeners();
+  }
+
+  Future<void> setAvatar(String avatarPath) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _avatarPath = avatarPath;
+    await prefs.setString('avatarPath', avatarPath);
+    notifyListeners();
+  }
 }
+
+
 /*
 AuthState 类是一个状态管理类，它维护了用户的认证状态、用户名、是否是管理员等信息。
 register 方法用于注册新用户，将用户名和密码保存在本地存储中。

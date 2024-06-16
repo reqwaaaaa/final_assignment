@@ -21,18 +21,25 @@ dependencies:
   line_icons: ^2.0.3
   flutter_staggered_animations: ^1.0.0
   flutter_swiper_null_safety: ^1.0.2
-  
+  roulette: ^0.1.5
+  image_picker: ^1.1.2
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
-  
+
 flutter:
   assets:
     - assets/
     - images/
+    - fonts/
+  fonts:
+    - family: Font1
+      fonts:
+       - asset: fonts/font1.ttf
+    - family: Font2
+      fonts:
+       - asset: fonts/font2.ttf
   uses-material-design: true
-
-
-
-
