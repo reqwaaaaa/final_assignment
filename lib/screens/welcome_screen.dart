@@ -45,7 +45,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               padding: const EdgeInsets.only(left: 20.0),
               child: Text(
                 'FortuneFling', // 第三行文字
-                style: TextStyle(fontFamily: "Font2", fontSize: 44, color: Colors.white), // 设置文字大小和颜色
+                style: TextStyle(fontFamily: "Font3", fontSize: 44, color: Colors.white), // 设置文字大小和颜色
               ),
             ),
             SizedBox(height: 20), // 调整行间距
@@ -58,7 +58,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               padding: const EdgeInsets.only(left: 20.0),
               child: Text(
                 '选择困难症福音——', // 图标下面第一行文字
-                style: TextStyle(fontSize: 20, color: Colors.white), // 设置文字大小和颜色
+                style: TextStyle(
+                    fontFamily:"Font3",fontSize: 20, color: Colors.white), // 设置文字大小和颜色
               ),
             ),
             Padding(

@@ -17,28 +17,26 @@ class _WheelOfFortuneScreenState extends State<WheelOfFortuneScreen>
   static final _random = Random();
   late int _currentIndex = 0; // State to hold the current index
   bool _isSpinning = false; // State to manage spinning state
+  final List<Color> _customColors = [
+    Color.fromARGB(255, 42, 128, 227),
+    Color.fromARGB(255, 170, 212, 250),
+    Color.fromARGB(255, 44, 159, 239),
+    Color.fromARGB(255, 8, 80, 180),
+    Color.fromARGB(255, 255, 204, 97),
+    Color.fromARGB(255, 253, 230, 176),
+  ];
 
   @override
   void initState() {
     super.initState();
 
-    // Create a group with custom colors for each option
-    List<RouletteUnit> units = [];
-    for (int i = 0; i < widget.options.length; i++) {
-      // Generate a random color for each option
-      Color color = Color.fromARGB(
-        255,
-        _random.nextInt(256),
-        _random.nextInt(256),
-        _random.nextInt(256),
-      );
-      units.add(RouletteUnit.noText(color: color));
-    }
+    // Initialize RouletteGroup with custom colors
+    List<Color> optionColors = _assignColors(widget.options.length);
 
     RouletteGroup group = RouletteGroup.uniform(
       widget.options.length,
       textBuilder: (index) => widget.options[index],
-      colorBuilder: (index) => units[index].color,
+      colorBuilder: (index) => optionColors[index],
     );
 
     // Initialize RouletteController with the group and vsync
@@ -76,7 +74,7 @@ class _WheelOfFortuneScreenState extends State<WheelOfFortuneScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
+      appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 183, 220, 255),
         elevation: 0,
         centerTitle: true,
@@ -89,6 +87,7 @@ class _WheelOfFortuneScreenState extends State<WheelOfFortuneScreen>
           ),
         ),
       ),
+      backgroundColor: Color.fromARGB(255, 226, 240, 254),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -108,8 +107,19 @@ class _WheelOfFortuneScreenState extends State<WheelOfFortuneScreen>
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: _isSpinning ? null : _startSpin, // Disable button when spinning
-              child: Text('停！'), // 停止按钮的文本
+              onPressed: _isSpinning
+                  ? null
+                  : _startSpin, // Disable button when spinning
+              child: Text('开始！'), // 停止按钮的文本
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                foregroundColor: Colors.white,
+                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                elevation: 5,
+              ),
             ),
           ],
         ),
@@ -123,10 +133,14 @@ class _WheelOfFortuneScreenState extends State<WheelOfFortuneScreen>
       child: Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          border: Border.all(color: Colors.blue, width: 2.0),
+          gradient: RadialGradient(
+            colors: [Colors.white, Colors.blue.shade200],
+            stops: [0.7, 1.0],
+          ),
+          border: Border.all(color: Colors.blue, width: 4.0),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(16.0),
           child: Roulette(
             controller: _controller,
             style: const RouletteStyle(
@@ -134,6 +148,10 @@ class _WheelOfFortuneScreenState extends State<WheelOfFortuneScreen>
               dividerColor: Colors.black,
               centerStickSizePercent: 0.05,
               centerStickerColor: Colors.black,
+              textStyle: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
@@ -146,9 +164,22 @@ class _WheelOfFortuneScreenState extends State<WheelOfFortuneScreen>
       bottom: 20,
       child: CustomPaint(
         size: Size(40, 20), // Size of the triangle
-        painter: _TrianglePainter(color: Colors.red), // Custom painter for triangle
+        painter:
+            _TrianglePainter(color: Colors.red), // Custom painter for triangle
       ),
     );
+  }
+
+  List<Color> _assignColors(int count) {
+    List<Color> colors = [];
+    for (int i = 0; i < count; i++) {
+      Color color;
+      do {
+        color = _customColors[_random.nextInt(_customColors.length)];
+      } while (i > 0 && color == colors[i - 1]);
+      colors.add(color);
+    }
+    return colors;
   }
 }
 

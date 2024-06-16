@@ -42,4 +42,8 @@ flutter:
     - family: Font2
       fonts:
        - asset: fonts/font2.ttf
+    - family: Font3
+      fonts:
+       - asset: fonts\方悦黑.ttf
+       - asset: fonts\Aileron-BlackItalic.ttf
   uses-material-design: true
