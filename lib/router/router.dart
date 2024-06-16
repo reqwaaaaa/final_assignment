@@ -1,3 +1,6 @@
+import 'package:dod1/screens/change_name_screen.dart';
+import 'package:dod1/screens/change_picture_screen.dart';
+import 'package:dod1/screens/history_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import '../screens/login_screen.dart';
@@ -12,10 +15,11 @@ import '../screens/admin_screen.dart';
 import '../screens/manage_questions_screen.dart';
 import '../screens/my_themes_screen.dart';
 import '../screens/create_theme_screen.dart';
+import '../screens/welcome_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
-    case '/':
+    case '/login':
       return MaterialPageRoute(builder: (_) => LoginScreen());
     case '/register':
       return MaterialPageRoute(builder: (_) => RegisterScreen());
@@ -39,6 +43,16 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (_) => MyThemesScreen());
     case '/create_theme':
       return MaterialPageRoute(builder: (_) => CreateThemeScreen());
+       case '/welcome':
+      return MaterialPageRoute(builder: (_) => WelcomeScreen());
+    case '/change_nickname':
+      return MaterialPageRoute(builder: (_) => ChangeNameScreen());
+    case '/change_avatar':
+      return MaterialPageRoute(builder: (_) => ChangePictureScreen());
+    case '/history':
+      return MaterialPageRoute(builder: (_) => HistoryScreen());
+
+
     default:
       return MaterialPageRoute(builder: (_) => LoginScreen());
   }
