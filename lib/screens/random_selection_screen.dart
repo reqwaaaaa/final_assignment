@@ -39,6 +39,7 @@ class RandomChoiceScreen extends StatelessWidget {
       ),
       backgroundColor: Color.fromARGB(255, 226, 240, 254),
       body: Center(
+        
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),

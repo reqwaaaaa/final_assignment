@@ -128,7 +128,7 @@ class _WheelOfFortuneScreenState extends State<WheelOfFortuneScreen>
               onPressed: _isSpinning
                   ? null
                   : _startSpin, // Disable button when spinning
-              child: Text('开始！'), // 停止按钮的文本
+              child: Text('开始！'), // 开始按钮的文本
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color.fromARGB(255, 158, 208, 255), // 默认背景颜色
                 foregroundColor: Colors.white, // 默认文本颜色
@@ -182,8 +182,9 @@ class _WheelOfFortuneScreenState extends State<WheelOfFortuneScreen>
       bottom: 20,
       child: CustomPaint(
         size: Size(40, 20), // Size of the triangle
-        painter:
-            _TrianglePainter(color: Color.fromARGB(255, 45, 129, 255)), // Custom painter for triangle
+        painter: _TrianglePainter(
+            color: Color.fromARGB(
+                255, 45, 129, 255)), // Custom painter for triangle
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:dod1/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:provider/provider.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -31,8 +32,10 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
-                height: 200, // 设置一个固定的高度
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child:Container(
+                  height: 200, // 设置一个固定的高度
                 child: Swiper(
                   itemCount: _imageList.length,
                   itemBuilder: (context, index) {
@@ -56,8 +59,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   pagination: new SwiperPagination(),
                   control: new SwiperControl(),
                 ),
+                )
               ),
-              SizedBox(height: 20), // 减少这个间距，使轮播图上移
+              SizedBox(height: 100), 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
@@ -156,12 +160,6 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Color.fromARGB(255, 183, 220, 255),
         elevation: 0,
         centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(30),
