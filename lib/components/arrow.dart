@@ -16,7 +16,7 @@ class ArrowPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.black
+      ..color = Color.fromARGB(255, 255, 96, 48)
       ..style = PaintingStyle.fill;
 
     final path = Path()

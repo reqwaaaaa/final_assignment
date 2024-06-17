@@ -100,7 +100,7 @@ class _RoulettePageState extends State<RoulettePage>
                   children: [
                     MyRoulette(controller: _controller),
                     Positioned(
-                      top: 0,
+                      top: 40, 
                       child: const Arrow(),
                     ),
                   ],
@@ -120,6 +120,7 @@ class _RoulettePageState extends State<RoulettePage>
                 ),
               ),
             ),
+            SizedBox(height: 100), 
           ],
         ),
       ),
@@ -142,29 +143,42 @@ class MyRoulette extends StatelessWidget {
   final RouletteController controller;
 
   @override
-@override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.topCenter,
-      children: [
-        SizedBox(
-          width: 300,
-          height: 300,
-          child: Roulette(
-            controller: controller,
-            style: const RouletteStyle(
-              dividerThickness: 2.0,
-              dividerColor: Colors.black,
-              centerStickSizePercent: 0.05,
-              centerStickerColor: Colors.black,
-              textStyle: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
+    return Container(
+      width: 400,
+      height: 400,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: RadialGradient(
+          colors: [Colors.white, Colors.blue.shade200],
+          stops: [0.7, 1.0],
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.3),
+            blurRadius: 8.0,
+            spreadRadius: 2.0,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Roulette(
+          controller: controller,
+          style: const RouletteStyle(
+            dividerThickness: 2.0,
+            dividerColor: Colors.black,
+            centerStickSizePercent: 0.05,
+            centerStickerColor: Colors.black,
+            textStyle: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 }

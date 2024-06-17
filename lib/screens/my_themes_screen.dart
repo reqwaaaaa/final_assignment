@@ -83,19 +83,7 @@ class MyThemesScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             IconButton(
-                              icon: Icon(Icons.edit, color: Colors.blue),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        CreateThemeScreen(themeIndex: index),
-                                  ),
-                                );
-                              },
-                            ),
-                            IconButton(
-                              icon: Icon(Icons.delete, color: Colors.red),
+                              icon: Icon(Icons.delete, color: Color.fromARGB(255, 42, 127, 255)),
                               onPressed: () {
                                 _confirmDelete(context, index);
                               },
