@@ -75,6 +75,7 @@ class _ChangeNameScreenState extends State<ChangeNameScreen> {
           ),
         ),
       ),
+      backgroundColor: Color.fromARGB(255, 226, 240, 254),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(

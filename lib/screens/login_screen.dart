@@ -21,6 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: Color.fromARGB(255, 183, 220, 255),
         elevation: 0,
         centerTitle: true,
+        automaticallyImplyLeading: false,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(30),

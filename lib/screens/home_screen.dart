@@ -30,12 +30,10 @@ class _HomeScreenState extends State<HomeScreen> {
       Center(
         child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child:Container(
-                  height: 200, // 设置一个固定的高度
+                Container(
+                  padding: EdgeInsets.zero,
+                  height: MediaQuery.of(context).size.height * 0.4, // 设置一个固定的高度
                 child: Swiper(
                   itemCount: _imageList.length,
                   itemBuilder: (context, index) {
@@ -59,9 +57,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   pagination: new SwiperPagination(),
                   control: new SwiperControl(),
                 ),
-                )
-              ),
-              SizedBox(height: 100), 
+                ),
+              SizedBox(height: 50), 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
@@ -160,6 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Color.fromARGB(255, 183, 220, 255),
         elevation: 0,
         centerTitle: true,
+        automaticallyImplyLeading: false,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(30),

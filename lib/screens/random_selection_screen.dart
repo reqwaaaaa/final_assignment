@@ -98,37 +98,6 @@ class RandomChoiceScreen extends StatelessWidget {
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    // TODO: 实现主题模版功能
-                  },
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.view_module,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        '主题模版',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 255, 255, 255),
-                        ),
-                      ),
-                    ],
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 183, 220, 255),
-                    minimumSize: Size(double.infinity, 60),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
                     Navigator.pushNamed(context, '/my_themes');
                   },
                   child: Row(
@@ -160,7 +129,7 @@ class RandomChoiceScreen extends StatelessWidget {
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    // TODO: 实现历史记录功能
+                    Navigator.pushNamed(context, '/history'); // 历史记录按钮点击事件
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.min,

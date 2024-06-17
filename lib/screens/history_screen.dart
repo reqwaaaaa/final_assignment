@@ -1,3 +1,4 @@
+import 'package:dod1/components/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class HistoryScreen extends StatelessWidget {
@@ -36,22 +37,23 @@ class HistoryScreen extends StatelessWidget {
           ),
         ),
       ),
+      backgroundColor: Color.fromARGB(255, 226, 240, 254),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
+            CustomButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/random_choice_history');
               },
-              child: Text('随机选择结果'),
+              text: '随机选择结果',
             ),
             SizedBox(height: 20),
-            ElevatedButton(
+            CustomButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/truth_dare_history');
               },
-              child: Text('真心话大冒险结果'),
+              text: '真心话大冒险结果',
             ),
           ],
         ),
