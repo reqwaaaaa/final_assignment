@@ -170,7 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text(
           "FortuneFling",
           style: TextStyle(
-            fontFamily: "Font3",
+            fontFamily: "Font4",
             fontSize: 24,
             color: Colors.white,
             fontWeight: FontWeight.bold,

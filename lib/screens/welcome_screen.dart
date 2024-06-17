@@ -18,70 +18,65 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 183, 220, 255),
-        elevation: 0,
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30),
-          ),
-        ),
-        title: Text(
-          "Welcome!",
-          style: TextStyle(
-            fontFamily: "Font3",
-            fontSize: 24,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            shadows: [
-              Shadow(
-                offset: Offset(2, 2),
-                blurRadius: 4,
-                color: Colors.black.withOpacity(0.5),
-              ),
-            ],
-          ),
-        ),
-      ),
       backgroundColor: Colors.lightBlue[100], // 设置页面背景颜色为浅蓝色
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 30.0),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                '欢迎使用！', // 第一行文字
+                '欢迎使用', // 第一行文字
                 style: TextStyle(
-                    fontFamily: "Font3",
-                    fontSize: 36,
-                    color: Colors.white), // 设置文字大小和颜色
+                  fontFamily: "Font3",
+                  fontSize: 50,
+                  color: Colors.white,
+                  shadows: [
+                    Shadow(
+                      offset: Offset(2, 2),
+                      blurRadius: 4,
+                      color: Colors.black.withOpacity(0.5),
+                    ),
+                  ],
+                ), // 设置文字大小和颜色
               ),
             ),
-            SizedBox(height: 10), // 调整行间距
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0),
+            SizedBox(height: 50), // 调整行间距
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 '命运飞镖', // 第二行文字
                 style: TextStyle(
-                    fontFamily: "Font3",
-                    fontSize: 24,
-                    color: Colors.white), // 设置文字大小和颜色
+                  fontFamily: "Font3",
+                  fontSize: 30,
+                  color: Colors.white,
+                  shadows: [
+                    Shadow(
+                      offset: Offset(2, 2),
+                      blurRadius: 4,
+                      color: Colors.black.withOpacity(0.5),
+                    ),
+                  ],
+                ), // 设置文字大小和颜色
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0),
+            SizedBox(height: 10),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 'FortuneFling', // 第三行文字
-                style:
-                    TextStyle(fontSize: 44, color: Colors.white), // 设置文字大小和颜色
+                style: TextStyle(
+                  fontFamily: "Font4",
+                  fontSize: 30,
+                  color: Colors.white,
+                  shadows: [
+                    Shadow(
+                      offset: Offset(2, 2),
+                      blurRadius: 4,
+                      color: Colors.black.withOpacity(0.5),
+                    ),
+                  ],
+                ), // 设置文字大小和颜色
               ),
             ),
             SizedBox(height: 20), // 调整行间距
@@ -89,25 +84,23 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               'images/10001.png', // 图片路径
               height: 200, // 放大图片
             ),
-            SizedBox(height: 20), // 调整行间距
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0),
+            SizedBox(height: 50), // 调整行间距
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                '选择困难症福音', // 图标下面第一行文字
+                '选择困难症福音,你值得拥有~', // 图标下面第一行文字
                 style: TextStyle(
                     fontFamily: "Font3",
                     fontSize: 20,
-                    color: Colors.white), // 设置文字大小和颜色
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: Text(
-                '你值得拥有！', // 图标下面第二行文字
-                style:
-                    TextStyle(
-                    fontFamily: "Font3",
-                    fontSize: 20, color: Colors.white), // 设置文字大小和颜色
+                    color: Colors.white,
+                    shadows: [
+                    Shadow(
+                      offset: Offset(2, 2),
+                      blurRadius: 4,
+                      color: Colors.black.withOpacity(0.5),
+                    ),
+                  ],
+                    ), // 设置文字大小和颜色
               ),
             ),
           ],

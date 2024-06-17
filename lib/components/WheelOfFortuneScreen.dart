@@ -183,7 +183,7 @@ class _WheelOfFortuneScreenState extends State<WheelOfFortuneScreen>
       child: CustomPaint(
         size: Size(40, 20), // Size of the triangle
         painter:
-            _TrianglePainter(color: Colors.red), // Custom painter for triangle
+            _TrianglePainter(color: Color.fromARGB(255, 45, 129, 255)), // Custom painter for triangle
       ),
     );
   }

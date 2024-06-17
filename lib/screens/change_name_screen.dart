@@ -44,10 +44,35 @@ class _ChangeNameScreenState extends State<ChangeNameScreen> {
     var authState = Provider.of<AuthState>(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Color.fromARGB(255, 183, 220, 255),
+        elevation: 0,
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(30),
+          ),
+        ),
         title: Text(
           '更改昵称',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(
+            fontFamily: "Font3",
+            fontSize: 24,
+            color: Colors.white,
+            fontWeight: FontWeight.normal,
+            shadows: [
+              Shadow(
+                offset: Offset(2, 2),
+                blurRadius: 4,
+                color: Colors.black.withOpacity(0.5),
+              ),
+            ],
+          ),
         ),
       ),
       body: Padding(

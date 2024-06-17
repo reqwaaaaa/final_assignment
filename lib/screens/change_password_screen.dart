@@ -41,7 +41,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             fontFamily: "Font3",
             fontSize: 24,
             color: Colors.white,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.normal,
             shadows: [
               Shadow(
                 offset: Offset(2, 2),
