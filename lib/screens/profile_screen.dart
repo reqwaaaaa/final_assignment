@@ -34,7 +34,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         children: [
           Container(
             padding: EdgeInsets.all(20),
-            color: Colors.blue, // 蓝色背景
+            //color: Colors.blue, // 蓝色背景
             child: Row(
               children: [
                 CircleAvatar(
@@ -71,7 +71,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Icon(
-                          Icons.party_mode,
+                          Icons.keyboard,
                           color: Color.fromARGB(255, 255, 255, 255),
                         ),
                         SizedBox(width: 10),
@@ -107,7 +107,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Icon(
-                          Icons.party_mode,
+                          Icons.mms,
                           color: Color.fromARGB(255, 255, 255, 255),
                         ),
                         SizedBox(width: 10),
@@ -139,7 +139,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Icon(
-                          Icons.party_mode,
+                          Icons.password,
                           color: Color.fromARGB(255, 255, 255, 255),
                         ),
                         SizedBox(width: 10),
@@ -171,7 +171,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Icon(
-                          Icons.party_mode,
+                          Icons.history,
                           color: Color.fromARGB(255, 255, 255, 255),
                         ),
                         SizedBox(width: 10),
@@ -204,7 +204,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Icon(
-                          Icons.party_mode,
+                          Icons.exit_to_app,
                           color: Color.fromARGB(255, 255, 255, 255),
                         ),
                         SizedBox(width: 10),

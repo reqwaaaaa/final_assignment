@@ -114,7 +114,7 @@ class _RoulettePageState extends State<RoulettePage>
                 backgroundColor: Color.fromARGB(255, 158, 208, 255),
                 foregroundColor: Colors.white,
                 padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                textStyle: TextStyle(fontSize: 16),
+                textStyle: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),

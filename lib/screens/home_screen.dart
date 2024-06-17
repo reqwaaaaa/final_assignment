@@ -109,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(
-                            Icons.party_mode,
+                            Icons.gamepad,
                             color: Color.fromARGB(255, 255, 255, 255),
                           ),
                           SizedBox(width: 10),
