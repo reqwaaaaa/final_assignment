@@ -1,3 +1,4 @@
+import 'package:dod1/screens/RoulettePage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../state/theme_provider.dart';
@@ -69,7 +70,7 @@ class _CreateThemeScreenState extends State<CreateThemeScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => WheelOfFortuneScreen(options: options),
+        builder: (context) => RoulettePage(options: options),
       ),
     );
   }
