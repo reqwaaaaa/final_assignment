@@ -10,13 +10,14 @@ class ThemeModel {
   ThemeModel(
       {required this.name, required this.description, required this.options});
 
-// Ω´∂‘œÛ◊™ªªŒ™ JSON ∏Ò Ω
+  // Â∞ÜÊ®°ÂûãËΩ¨Âåñ‰∏∫ JSON Ê†ºÂºè
   Map<String, dynamic> toJson() => {
         'name': name,
         'description': description,
         'options': options,
       };
- // ¥” JSON ∏Ò Ω¥¥Ω®∂‘œÛ
+
+  // ‰ªé JSON Ê†ºÂºèËΩ¨Âåñ‰∏∫Ê®°Âûã
   factory ThemeModel.fromJson(Map<String, dynamic> json) {
     return ThemeModel(
       name: json['name'],
@@ -24,8 +25,6 @@ class ThemeModel {
       options: List<String>.from(json['options']),
     );
   }
-
-
 }
 
 class ThemeProvider with ChangeNotifier {
@@ -44,30 +43,50 @@ class ThemeProvider with ChangeNotifier {
   }
 
   void updateTheme(int index, ThemeModel theme) {
-    _themes[index] = theme;
-    _saveThemes();
-    notifyListeners();
+    if (index >= 0 && index < _themes.length) {
+      _themes[index] = theme;
+      _saveThemes();
+      notifyListeners();
+    } else {
+      debugPrint("Invalid index: $index");
+    }
   }
 
   void deleteTheme(int index) {
-    _themes.removeAt(index);
-    _saveThemes();
-    notifyListeners();
+    if (index >= 0 && index < _themes.length) {
+      _themes.removeAt(index);
+      _saveThemes();
+      notifyListeners();
+    } else {
+      debugPrint("Invalid index: $index");
+    }
   }
 
-   Future<void> _saveThemes() async {
-    final prefs = await SharedPreferences.getInstance();
-    final themesJson = jsonEncode(_themes.map((theme) => theme.toJson()).toList());
-    prefs.setString('themes', themesJson);
+  Future<void> _saveThemes() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final themesJson =
+          jsonEncode(_themes.map((theme) => theme.toJson()).toList());
+      await prefs.setString('themes', themesJson);
+    } catch (e) {
+      debugPrint("Failed to save themes: $e");
+    }
   }
 
   Future<void> _loadThemes() async {
-    final prefs = await SharedPreferences.getInstance();
-    final themesJson = prefs.getString('themes');
-    if (themesJson != null) {
-      final List<dynamic> themesList = jsonDecode(themesJson);
-      _themes = themesList.map((json) => ThemeModel.fromJson(json)).toList();
-      notifyListeners();
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final themesJson = prefs.getString('themes');
+      if (themesJson != null) {
+        final List<dynamic> themesList = jsonDecode(themesJson);
+        _themes = themesList.map((json) => ThemeModel.fromJson(json)).toList();
+      } else {
+        _themes = [];
+      }
+    } catch (e) {
+      debugPrint("Failed to load themes: $e");
+      _themes = [];
     }
+    notifyListeners();
   }
 }
