@@ -1,3 +1,3 @@
-# dod1
+# Hi there 👋
 
-A new Flutter project.
+**这是一个基于`Flutter`+`Dart`的练习应用**
